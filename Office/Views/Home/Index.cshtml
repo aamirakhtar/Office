@@ -1,0 +1,72 @@
+﻿@using Office.Controllers;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="HomeIndexSubmit">
+            @{
+                string msg = "";
+
+                int userId = 1;
+                if (userId > 0)
+                {
+                    msg = "Welcome Hammas, to Index";
+                }
+                else
+                {
+                    msg = "Welcome to Index";
+                }
+
+                List<DepartmentType> lstDepartmentTypes = new List<DepartmentType>();
+                lstDepartmentTypes.Add(new DepartmentType() { Id = 1, Name = "Operation" });
+                lstDepartmentTypes.Add(new DepartmentType() { Id = 2, Name = "Non Operation" });
+                lstDepartmentTypes.Add(new DepartmentType() { Id = 3, Name = "Technical" });
+            }
+
+            @for (int i = 0; i < 10; i++)
+            {
+                <label>@msg</label>
+                <br />
+            }
+
+            @if (userId > 0)
+            {
+                <label>User Name</label>
+                <input name="userName" onclick="OnClick()" />
+                @*@Html.TextBox("userName")*@
+                <br />
+                <label>Password</label>
+                @Html.Password("password")
+
+                @*@Html.CheckBox("IsValid", true)*@
+
+                @*<select name="lstDepartmentType">
+                @foreach (var type in lstDepartmentTypes)
+                {
+                    <option>@type.Name</option>
+                }
+            </select>*@
+
+                @Html.DropDownList("departmentType", lstDepartmentTypes.Select(l => new SelectListItem() { Value = l.Id.ToString(), Text = l.Name }));
+                @Html.ListBox("departmentType", lstDepartmentTypes.Select(l => new SelectListItem() { Value = l.Id.ToString(), Text = l.Name }));
+                @Html.CheckBox("IsValid", true)
+                <input value="Login" type="submit" />
+            }
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function OnClick() {
+        alert('@msg');
+    }
+</script>

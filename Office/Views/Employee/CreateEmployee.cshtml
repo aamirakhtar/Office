@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+    var departments = (List<Department>)ViewBag.departments;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create Employee</title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <label>Name</label> @Html.TextBox("name") <br />
+            <label>Department</label> @Html.DropDownList("departmentId", departments.Select(d => new SelectListItem() { Value = d.Id.ToString(), Text = d.Name })) <br />
+            <label>Age</label> @Html.TextBox("age") <br />
+            <label>Designation</label> @Html.TextBox("designation") <br />
+            <label>Address</label> @Html.TextBox("address") <br />
+            Male @Html.RadioButton("gender", "Male") Female @Html.RadioButton("gender", "Female")<br />
+            <input type="submit" value="Add" />
+        </form>
+    </div>
+    <a href="/Employee">Employees</a>
+</body>
+</html>

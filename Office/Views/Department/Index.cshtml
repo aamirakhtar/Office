@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+
+    OfficeEntities OE = new OfficeEntities();
+    var departments = OE.Departments.ToList();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Actions</td>
+            </tr>
+
+            @foreach (Department dept in departments)
+            {
+                <tr>
+                    <td>@dept.Id</td>
+                    <td>@dept.Name</td>
+                    <td>@dept.Description</td>
+                    <td>
+                        <a href="/EditDepartment?id=@dept.Id">Edit</a>
+                        <a href="/DeleteDepartment?id=@dept.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
