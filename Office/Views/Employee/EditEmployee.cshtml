@@ -1,6 +1,7 @@
 ﻿@model Employee
 @{
     var departmentItems = ((List<Department>)ViewBag.departments).Select(d => new SelectListItem() { Value = d.Id.ToString(), Text = d.Name });
+    Employee employee = ViewBag.employee;
 }
 
 <!DOCTYPE html>
@@ -8,19 +9,20 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create Employee</title>
+    <title>Edit Employee</title>
 </head>
 <body>
     <div>
         <form method="post">
+            @Html.HiddenFor(m => m.Id)
             <label>Name</label> @Html.TextBoxFor(m => m.Name) <br />
             <label>Department</label> @Html.DropDownListFor(m => m.DepartmentId, departmentItems) <br />
             <label>Age</label> @Html.TextBoxFor(m => m.Age) <br />
             <label>Designation</label> @Html.TextBoxFor(m => m.Designation) <br />
             <label>Address</label> @Html.TextBoxFor(m => m.Address) <br />
             Male @Html.RadioButtonFor(m => m.Gender, "male") Female @Html.RadioButtonFor(m => m.Gender, "female")<br />
-
-            <input type="submit" value="Add" />
+            
+            <input type="submit" value="Update" />
         </form>
     </div>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Office Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -17,9 +17,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Employees", "Index", "Employee", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Departments", "Index", "Department", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Office Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Employees", "Index", "Employee", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Departments", "Index", "Department", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,10 +30,16 @@
     </div>
 
     <div class="container body-content">
+        <header>
+            <a href="/">Home</a> | 
+            <a href="/Employee">Employees</a> | 
+            <a href="/Employee/CreateEmployee">Create Employee</a>
+        </header>
+        <hr />
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now - My Office Application</p>
         </footer>
     </div>
 
