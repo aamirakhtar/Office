@@ -1,6 +1,6 @@
-﻿@model Employee
+﻿@model Office.Models.CreateEmployeeModel
 @{
-    var departmentItems = ((List<Department>)ViewBag.departments).Select(d => new SelectListItem() { Value = d.Id.ToString(), Text = d.Name });
+    var departmentItems = (Model.departments).Select(d => new SelectListItem() { Value = d.Id.ToString(), Text = d.Name });
 }
 
 <!DOCTYPE html>
@@ -13,14 +13,20 @@
 <body>
     <div>
         <form method="post">
-            <label>Name</label> @Html.TextBoxFor(m => m.Name) <br />
-            <label>Department</label> @Html.DropDownListFor(m => m.DepartmentId, departmentItems) <br />
-            <label>Age</label> @Html.TextBoxFor(m => m.Age) <br />
-            <label>Designation</label> @Html.TextBoxFor(m => m.Designation) <br />
-            <label>Address</label> @Html.TextBoxFor(m => m.Address) <br />
-            Male @Html.RadioButtonFor(m => m.Gender, "male") Female @Html.RadioButtonFor(m => m.Gender, "female")<br />
+
+            @Html.LabelFor(m => m.employee.Name) @Html.TextBoxFor(m => m.employee.Name) * @Html.ValidationMessageFor(model => model.employee.Name)<br />
+            <label>Department</label> @Html.DropDownListFor(m => m.employee.DepartmentId, departmentItems) * @Html.ValidationMessageFor(model => model.employee.DepartmentId)<br />
+            <label>Age</label> @Html.TextBoxFor(m => m.employee.Age) <br />
+            <label>Designation</label> @Html.TextBoxFor(m => m.employee.Designation) <br />
+            <label>Address</label> @Html.TextBoxFor(m => m.employee.Address) <br />
+            @Html.LabelFor(m => m.employee.Email) @Html.TextBoxFor(m => m.employee.Email) * @Html.ValidationMessageFor(model => model.employee.Email)<br />
+
+            Male @Html.RadioButtonFor(m => m.employee.Gender, "male") Female @Html.RadioButtonFor(m => m.employee.Gender, "female")
+            * @Html.ValidationMessageFor(model => model.employee.Gender) <br />
 
             <input type="submit" value="Add" />
+
+
         </form>
     </div>
 </body>

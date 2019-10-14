@@ -46,7 +46,7 @@ namespace Office.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Department department)
+        public ActionResult Create(Department department)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Office.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Department department)
+        public ActionResult Edit(Department department)
         {
             if (ModelState.IsValid)
             {
@@ -113,15 +113,6 @@ namespace Office.Controllers
             db.Departments.Remove(department);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

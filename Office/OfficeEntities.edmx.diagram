@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f76036efc99147c8ac2f84f64ee74f32" Name="Diagram1">
         <EntityTypeShape EntityType="OfficeModel.Department" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OfficeModel.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OfficeModel.Employee" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="OfficeModel.FK_Employee_Department" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

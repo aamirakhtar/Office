@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Office.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,10 +13,10 @@ namespace Office.Controllers
         public ActionResult Index()
         {
             OfficeEntities oe = new OfficeEntities();
-            
+
             var employees = oe.Employees.ToList();
             ViewBag.msg = TempData["msg"];
-            
+
             return View(employees);
         }
         #region Without model
@@ -102,22 +103,32 @@ namespace Office.Controllers
         public ActionResult CreateEmployee()
         {
             OfficeEntities oe = new OfficeEntities();
-            ViewBag.departments = oe.Departments.ToList();
+            CreateEmployeeModel model = new CreateEmployeeModel();
+            model.departments = oe.Departments.ToList();
 
-            Employee model = new Employee();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult CreateEmployee(Employee model)
+        public ActionResult CreateEmployee(CreateEmployeeModel model)
         {
             OfficeEntities oe = new OfficeEntities();
-            oe.Entry(model).State = System.Data.Entity.EntityState.Added;
-            oe.SaveChanges();
 
-            TempData["msg"] = "Successfully added";
+            if (model.employee.DepartmentId == null || model.employee.DepartmentId == 0)
+                ModelState.AddModelError("employee.DepartmentId", "Please select department");
 
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                oe.Entry(model.employee).State = System.Data.Entity.EntityState.Added;
+                oe.SaveChanges();
+
+                TempData["msg"] = "Successfully added";
+
+                return RedirectToAction("Index");
+            }
+
+            model.departments = oe.Departments.ToList();
+            return View(model);
         }
 
         public ActionResult EditEmployee(int id)

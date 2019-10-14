@@ -10,18 +10,33 @@
 namespace Office
 {
     using System;
-    using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         public int Id { get; set; }
+
+        [Display(Name = "Employee Name")]
+        [Required(ErrorMessage = "Please enter Name")]
+        [StringLength(200, ErrorMessage = "Please enter within 200 chars")]
         public string Name { get; set; }
+
         public Nullable<int> DepartmentId { get; set; }
+
+        [Range(20, 80, ErrorMessage = "Please neter age from 20 to 80 years")]
         public Nullable<int> Age { get; set; }
+
+
         public string Designation { get; set; }
         public string Address { get; set; }
+
+        [Required(ErrorMessage = "Please select gender")]
         public string Gender { get; set; }
-    
+
+        [Required(ErrorMessage = "Please enter email")]
+        [EmailAddress(ErrorMessage = "Please enter valid email")]
+        public string Email { get; set; }
+
         public virtual Department Department { get; set; }
     }
 }
